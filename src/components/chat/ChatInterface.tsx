@@ -103,7 +103,14 @@ console.log("ci",conversationId)
       setInputMessage("")
     }
   }
-
+  const formatTimestamp = (timestamp: string) => {
+    const date = new Date(timestamp)
+    return date.toLocaleTimeString("en-US", {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    })
+  }
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
   }
@@ -127,7 +134,7 @@ console.log("ci",conversationId)
               }`}
             >
               <p>{message.content}</p>
-              <p className="text-xs mt-1 text-gray-500">{new Date(message.timestamp).toLocaleTimeString()}</p>
+              <p className="text-xs mt-1 text-gray-500">{formatTimestamp(message.timestamp)}</p>
             </div>
           </div>
         ))}
